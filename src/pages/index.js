@@ -1,5 +1,6 @@
 // this package is imported from node.js and will fail if it is used directly on the client side because browser side javascript can't access the file system. When the code on the client side runs, next.js will not make it part of the client side.
 import fs from "fs/promises";
+import Link from "next/link";
 import path from "path";
 
 // this will only be visible on the client side.
@@ -11,7 +12,9 @@ export default function Home(props) {
         <h1>Home page</h1>
         <ul>
           {products.map((product) => (
-            <li key={product.id}>{product.title}</li>
+            <li key={product.id}>
+              <Link href={`/products/${product.id}`}>{product.title}</Link>
+            </li>
           ))}
         </ul>
       </div>
